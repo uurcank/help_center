@@ -32,7 +32,7 @@ rails help_center:install:migrations
 rails db:migrate
 ```
 
-Add HelpCenter to your `User` model. The model **must** have `name` method which will be used to display the user's name on the forum. Currently only a model named `User` will work, but this will be fixed shortly.
+Add HelpCenter to your `User` model. The model **must** have `name` method which will be used to display the user's name on comments & discussions (if enabled). Currently only a model named `User` will work.
 
 ```ruby
 class User < ActiveRecord::Base
@@ -52,7 +52,8 @@ rails db:migrate
 ```
 Only moderators or admins can add support articles.
 
-```if current_user.admin? || current_user.moderator?
+```
+if current_user.admin? || current_user.moderator?
 ```
 
 Add the following line to your `config/routes.rb` file:
@@ -141,7 +142,7 @@ HelpCenter uses [Trix editor](https://github.com/basecamp/trix) by [Basecamp](ht
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/excid3/simple_discussion. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/uurcank/help_center This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 ## License
 
