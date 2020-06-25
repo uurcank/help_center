@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Ugurcan Kaya"]
   spec.email         = ["support@pasilobus.com"]
 
-  spec.summary       = %q{A simple Rails wiki gem with Trix editor}
-  spec.description   = %q{A simple Rails wiki gem with Trix editor}
+  spec.summary       = %q{A wiki gem for creating documentation & help centers in your Rails app}
+  spec.description   = %q{A wiki gem for creating documentation & help centers in your Rails app}
   spec.homepage      = "https://github.com/uurcank/help_center"
   spec.license       = "MIT"
 
