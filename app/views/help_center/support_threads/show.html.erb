@@ -1,0 +1,39 @@
+<div class="container">
+<div class="row">
+  <div class="col-md-11">
+    <small class="mb-2"><%= support_category_link(@support_thread.support_category) %> > <%= @support_thread.title %></small>
+    <h1><%= icon "fas", "thumb-tack", class: "text-muted" if @support_thread.pinned? %> <%= @support_thread.title %></h1>
+  </div>
+
+  <% if is_moderator_or_owner?(@support_thread) %>
+    <div class="col-md-1">
+      <%= link_to icon("fas","pencil"), help_center.edit_support_thread_path(@support_thread),
+        class: "text-muted",
+        data: { toggle: "tooltip", placement: "left" },
+        title: t('edit_this_thread') %>
+    </div>
+  <% end %>
+
+</div>
+
+<p class="thread-details d-flex">
+    <%= t('written_by_author', author: @support_thread.user.name) %>
+    <small><%= t('content_updated_at', update_time: time_ago_in_words(@support_thread.updated_at)) %></small>
+</p>
+
+<%= @support_thread.content %>
+
+<div class="thread-reaction">
+  <p>Did this answer your question?</p>
+  <p class="thread-reaction-links">
+    <a>😞<a>
+    <a>😃<a>
+  </p>
+<div>
+
+<% if HelpCenter.enable_comments %>
+ <hr>
+ <%= render partial: "help_center/support_posts/support_post", collection: @support_thread.support_posts.includes(:user).sorted %>
+ <%= render partial: "help_center/support_posts/form" if user_signed_in? %>
+<% end %>
+</div>

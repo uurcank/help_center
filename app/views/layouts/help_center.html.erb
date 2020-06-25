@@ -1,0 +1,120 @@
+<% @layout = 'website' %>
+
+<div class="container mt-6">
+ <!-- Title
+ <div class="row col-md-12">
+   <h1>
+     <%= t('documentation') %>
+   </h1>
+ </div>
+-->
+
+<div class="row help_center">
+ <div class="col-md-3 mb-3">
+
+   <div class="card card-body">
+     <% if current_user && (current_user.admin? || current_user.moderator?) %>
+      <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "btn btn-outline-primary btn-block" %>
+      <hr />
+     <% end %>
+
+     <div class="support-thread-filters">
+       <% SupportCategory.sorted.each do |category| %>
+         <div>
+           <%= support_link_to help_center.support_category_support_threads_path(category) do %>
+             <%= category.name %>
+           <% end %>
+           <% if @category.present? && @category == category %>
+           <div class="pl-2">
+                <% @support_threads.each do |thread| %>
+                 <%= support_link_to help_center.support_thread_path(thread) do %>
+                    <%= thread.title %>
+                  <% end %>
+                <% end %>
+                </div>
+            <% end %>
+         </div>
+       <% end %>
+     </div>
+
+
+
+   <% if HelpCenter.enable_comments %>
+           <hr />
+
+
+
+     <div class="support-thread-filters">
+       <h5>
+         <strong>
+           <%= t('filters') %>
+         </strong>
+       </h5>
+       <div>
+         <%= support_link_to help_center.support_threads_path, exact: true do %>
+           <%= icon "fa-fw fas", "bars" %>
+           <%= t('.all_threads') %>
+         <% end %>
+       </div>
+       <% if user_signed_in? %>
+         <div>
+           <%= support_link_to help_center.mine_support_threads_path do %><%= icon "fa-fw far", "user-circle" %>
+             <%= t('.my_questions') %>
+           <% end %>
+         </div>
+         <div>
+           <%= support_link_to help_center.participating_support_threads_path do %>
+             <%= icon "fa-fw far", "comments" %>
+             <%= t('.participating') %>
+           <% end %>
+         </div>
+       <% end %>
+       <div>
+         <%= support_link_to help_center.answered_support_threads_path do %>
+           <%= icon "fa-fw fas", "check" %>
+           <%= t('.answered') %>
+         <% end %>
+       </div>
+       <div>
+         <%= support_link_to help_center.unanswered_support_threads_path do %>
+           <%= icon "fa-fw fas", "question" %>
+           <%= t('.unanswered') %>
+         <% end %>
+       </div>
+     </div>
+
+
+
+     <% if @support_thread.present? && @support_thread.persisted? %>
+       <hr />
+
+       <%# User has not posted in the thread or subscribed %>
+       <h5><%= t('.notifications') %></h5>
+
+       <%= link_to help_center.support_thread_notifications_path(@support_thread), method: :post, class: "btn btn-secondary btn-sm btn-block mb-2" do %>
+         <% if @support_thread.subscribed? current_user %>
+           <%= icon "fa-fw fas", "bell-slash" %> <%= t('.unsubscribe') %>
+         <% else %>
+           <%= icon "fa-fw fas", "bell" %>
+           <%= t('.suscribe') %>
+         <% end %>
+       <% end %>
+
+       <small><%= @support_thread.subscribed_reason(current_user) %></small>
+     <% end %>
+   <% end %>
+   </div>
+
+ </div>
+
+ <div class="col-md-9 mb-3">
+
+   <div class="card card-body">
+     <%= yield %>
+   </div>
+
+ </div>
+</div>
+</div>
+
+<% parent_layout("application") %>

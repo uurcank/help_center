@@ -1,0 +1,12 @@
+<div style="position: relative">
+  <%= gravatar_image_tag @support_post.user.email, style: "float: left" %>
+
+  <div style="margin-left:60px">
+    <p><strong><%= @support_post.user.name %></strong> <small>commented:</small></p>
+    <%= formatted_content @support_post.body %>
+  </div>
+</div>
+
+<br />
+
+<p><%= link_to "Reply to this comment", support_thread_url(@support_post.support_thread, anchor: "support_post_#{@support_post.id}"), style: "background:#be2126; color:#fff; text-decoration:none; padding: 10px 20px" %></p>
