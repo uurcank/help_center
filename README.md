@@ -6,8 +6,10 @@ Out of the box, HelpCenter comes with styling for Boostrap v4 but you're free to
 
 ## Requirements
 
+```
 Rails >= 6.0.0
 bootstrap >= 4.0.0
+```
 
 ## Installation
 
