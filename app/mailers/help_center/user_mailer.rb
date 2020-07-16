@@ -1,7 +1,7 @@
 class HelpCenter::UserMailer < ApplicationMailer
   # You can set the default `from` address in ApplicationMailer
 
-  helper HelpCenter::ForumPostsHelper
+  helper HelpCenter::SupportPostsHelper
   helper HelpCenter::Engine.routes.url_helpers
 
   def new_thread(support_thread, recipient)
