@@ -1,17 +1,13 @@
 <p><small><%= link_to "← Back to the thread", help_center.support_thread_path(@support_thread) %></small></p>
-
 <h2><%= content_tag :span, "Pinned", class: "text-muted" if @support_thread.pinned? %> <%= @support_thread.title %></h2>
-
 <p class="thread-details">
   <strong><%= category_link(@support_thread.support_category) %></strong>
   • <%= t('asked_time_ago', time: time_ago_in_words(@support_thread.created_at), author: @support_thread.user.name) %>
 </p>
 </p>
-
 <br />
-
 <%= content_tag :div, id: dom_id(@support_post), class: support_post_classes(@support_post) do %>
-  <div class="card-header">
+  <div class="py-3 px-6 mb-0 bg-grey-lighter border-b-1 border-grey-light text-grey-darkest">
     <div>
       <%= avatar_tag(@support_post.user.email) %>
       <strong class="support-post-user"><%= @support_post.user.name %></strong>
@@ -21,8 +17,7 @@
       </small>
     </div>
   </div>
-
-  <div class="card-body">
+  <div class="flex-auto p-6">
     <%= render "form" %>
   </div>
 <% end %>
