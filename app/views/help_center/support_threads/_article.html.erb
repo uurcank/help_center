@@ -1,6 +1,6 @@
 <div class="container mx-auto">
 <div class="flex flex-wrap mb-8">
-  <% if is_moderator_or_owner?(@support_thread) %>
+  <% if current_user && current_user.admin? %>
     <div class="flex w-full pr-4 pl-4 justify-end">
       <%= link_to icon("fas","pencil"), help_center.edit_support_thread_path(@support_thread),
         class: "text-muted",
