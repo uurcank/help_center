@@ -67,6 +67,6 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
     end
 
     def support_thread_params
-      params.require(:support_thread).permit(:title, :content, :support_category_id, support_posts_attributes: [:body])
+      params.require(:support_thread).permit(:title, :content, :position, :support_category_id, support_posts_attributes: [:body])
     end
 end

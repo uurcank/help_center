@@ -19,7 +19,7 @@
              </div>
            <% end %>
            <div>
-            <% threads = SupportThread.where(support_category_id: category.id) %>
+            <% threads = SupportThread.where(support_category_id: category.id).order(:position) %>
             <% threads.each do |thread| %>
               <div class="mb-2">
               <%= support_link_to help_center.support_thread_path(thread) do %>
