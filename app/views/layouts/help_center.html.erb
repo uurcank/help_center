@@ -1,49 +1,38 @@
 <% @layout = 'website' %>
 
-<div class="container mt-6">
- <!-- Title
- <div class="row col-md-12">
-   <h1>
-     <%= t('documentation') %>
-   </h1>
- </div>
--->
-
-<div class="row help_center">
- <div class="col-md-3 mb-3">
-
-   <div class="card card-body">
+<div class="container mx-auto mt-2">
+<div class="flex flex-wrap help_center">
+ <div class="md:w-1/4 pr-4 pl-4 mb-3">
+   <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light flex-auto p-6">
      <% if current_user && (current_user.admin? || current_user.moderator?) %>
       <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "btn btn-outline-primary btn-block" %>
       <hr />
      <% end %>
-
      <div class="support-thread-filters">
        <% SupportCategory.sorted.each do |category| %>
-         <div>
+         <div class="pb-3">
            <%= support_link_to help_center.support_category_support_threads_path(category) do %>
+            <div class="mb-2 mt-3">
+              <span class="font-extrabold">
              <%= category.name %>
+             </span>
+             </div>
            <% end %>
-           <% if @category.present? && @category == category %>
-           <div class="pl-2">
-                <% @support_threads.each do |thread| %>
-                 <%= support_link_to help_center.support_thread_path(thread) do %>
-                    <%= thread.title %>
-                  <% end %>
-                <% end %>
-                </div>
+           <div>
+            <% threads = SupportThread.where(support_category_id: category.id).order(:position) %>
+            <% threads.each do |thread| %>
+              <div class="mb-2">
+              <%= support_link_to help_center.support_thread_path(thread) do %>
+                <%= thread.title %>
+              <% end %>
+              </div>
             <% end %>
+            </div> 
          </div>
        <% end %>
      </div>
-
-
-
    <% if HelpCenter.enable_comments %>
            <hr />
-
-
-
      <div class="support-thread-filters">
        <h5>
          <strong>
@@ -82,15 +71,10 @@
          <% end %>
        </div>
      </div>
-
-
-
      <% if @support_thread.present? && @support_thread.persisted? %>
        <hr />
-
        <%# User has not posted in the thread or subscribed %>
        <h5><%= t('.notifications') %></h5>
-
        <%= link_to help_center.support_thread_notifications_path(@support_thread), method: :post, class: "btn btn-secondary btn-sm btn-block mb-2" do %>
          <% if @support_thread.subscribed? current_user %>
            <%= icon "fa-fw fas", "bell-slash" %> <%= t('.unsubscribe') %>
@@ -99,22 +83,22 @@
            <%= t('.suscribe') %>
          <% end %>
        <% end %>
-
        <small><%= @support_thread.subscribed_reason(current_user) %></small>
      <% end %>
    <% end %>
    </div>
-
  </div>
-
- <div class="col-md-9 mb-3">
-
-   <div class="card card-body">
+ <div class="md:w-3/4 pr-4 pl-4 mb-3">
+   <div class="relative flex flex-col min-w-0 rounded break-words bg-white flex-auto p-6">
+      <% if request.env['REQUEST_URI'] == "/support" %>
+        <% if SupportThread.exists?(id: 1) %>
+          <% @support_thread = SupportThread.find(1) %>
+          <%= render "help_center/support_threads/article"%>        
+        <% end %>
+      <% end %>
      <%= yield %>
    </div>
-
  </div>
 </div>
 </div>
-
 <% parent_layout("application") %>
