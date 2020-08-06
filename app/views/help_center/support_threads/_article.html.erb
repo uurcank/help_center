@@ -1,6 +1,6 @@
 <div class="container mx-auto">
 <div class="flex flex-wrap mb-8">
-  <% if is_moderator? %>
+  <% if is_moderator_or_owner?(@support_thread) %>
     <div class="flex w-full pr-4 pl-4 justify-end">
       <%= link_to icon("fas","pencil"), help_center.edit_support_thread_path(@support_thread),
         class: "text-muted",
@@ -12,7 +12,7 @@
     <small class="mb-2"><%= support_category_link(@support_thread.support_category) %> > <%= @support_thread.title %></small>
     <h1><%= icon "fas", "thumb-tack", class: "text-muted" if @support_thread.pinned? %> <%= @support_thread.title %></h1>
   </div>
-  
+
 </div>
 <%= @support_thread.content %>
 <!--
