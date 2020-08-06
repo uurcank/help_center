@@ -1,7 +1,7 @@
 require 'font-awesome-sass'
 require 'friendly_id'
 require 'gravatar_image_tag'
-require 'will_paginate'
+require 'pagy'
 
 require 'help_center/engine'
 require 'help_center/support_user'

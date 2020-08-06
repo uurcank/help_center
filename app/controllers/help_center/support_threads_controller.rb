@@ -5,6 +5,7 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
 
   def index
     @support_threads = SupportThread.pinned_first.sorted.includes(:user, :support_category).paginate(page: page_number)
+    @pagy, @records = pagy(@support_threads)
   end
 
   def answered

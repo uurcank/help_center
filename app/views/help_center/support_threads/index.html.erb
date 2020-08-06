@@ -10,7 +10,7 @@
       <hr>
       <%= render partial: "help_center/support_threads/support_thread", collection: @support_threads, spacer_template: "shared/spacer" %>
       <div class="support-threads-nav text-center">
-      <%= will_paginate @support_threads, url_builder: help_center, renderer: HelpCenter::BootstrapLinkRenderer %>
+      <%== pagy_nav(@pagy) %>
      </div>
     <% else %>
      <%# Set default index here %>
