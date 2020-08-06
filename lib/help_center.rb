@@ -7,7 +7,6 @@ require 'help_center/engine'
 require 'help_center/support_user'
 require 'help_center/slack'
 require 'help_center/version'
-require 'help_center/will_paginate'
 
 module HelpCenter
   # Define who owns the subscription
