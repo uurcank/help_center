@@ -13,7 +13,7 @@ class HelpCenter::ApplicationController < ::ApplicationController
   helper_method :is_moderator_or_owner?
 
   def is_moderator?
-    current_user.respond_to?(:moderator) && current_user.moderator? || current_user.admin?
+    current_user.respond_to?(:moderator) && current_user.moderator? || current_user.respond_to?(:admin) && current_user.admin?
   end
   helper_method :is_moderator?
 
