@@ -14,8 +14,11 @@
 
   .active {
     color: #222;
-    font-weight: bolder;
-  }
+    font-weight: 500;
+    background: #eee;
+    padding: 0.25rem;
+    border-radius: 5px;
+   }
 }
 
 /* Formatting for the support threads */
@@ -39,8 +42,7 @@
   display: block;
 
   &:hover {
-    color: #222222;
-    font-weight: bold;
+    color: #bfbfbf;
     text-decoration: none
   }
 }
