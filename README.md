@@ -8,7 +8,7 @@ Out of the box, HelpCenter comes with styling for Boostrap v4 but you're free to
 
 ```
 Rails >= 6.0.0
-bootstrap >= 4.0.0
+tailwindcss >= 1.6.0
 ```
 
 ## Installation
