@@ -4,27 +4,31 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
   before_action :require_mod_or_author_for_thread!, only: [:edit, :update]
 
   def index
-    @support_threads = SupportThread.pinned_first.sorted.includes(:user, :support_category).paginate(page: page_number)
+    @support_threads = SupportThread.pinned_first.sorted.includes(:user, :support_category)
     @pagy, @records = pagy(@support_threads)
   end
 
   def answered
-    @support_threads = SupportThread.solved.sorted.includes(:user, :support_category).paginate(page: page_number)
+    @support_threads = SupportThread.solved.sorted.includes(:user, :support_category)
+    @pagy, @records = pagy(@support_threads)
     render action: :index
   end
 
   def unanswered
-    @support_threads = SupportThread.unsolved.sorted.includes(:user, :support_category).paginate(page: page_number)
+    @support_threads = SupportThread.unsolved.sorted.includes(:user, :support_category)
+    @pagy, @records = pagy(@support_threads)
     render action: :index
   end
 
   def mine
-    @support_threads = SupportThread.where(user: current_user).sorted.includes(:user, :support_category).paginate(page: page_number)
+    @support_threads = SupportThread.where(user: current_user).sorted.includes(:user, :support_category)
+    @pagy, @records = pagy(@support_threads)
     render action: :index
   end
 
   def participating
-    @support_threads = SupportThread.includes(:user, :support_category).joins(:support_posts).where(support_posts: { user_id: current_user.id }).distinct(support_posts: :id).sorted.paginate(page: page_number)
+    @support_threads = SupportThread.includes(:user, :support_category).joins(:support_posts).where(support_posts: { user_id: current_user.id }).distinct(support_posts: :id).sorted
+    @pagy, @records = pagy(@support_threads)
     render action: :index
   end
 

@@ -3,7 +3,8 @@ class HelpCenter::SupportCategoriesController < HelpCenter::ApplicationControlle
 
   def index
     @support_threads = SupportThread.where(support_category: @category) if @category.present?
-    @support_threads = @support_threads.pinned_first.sorted.includes(:user, :support_category).paginate(per_page: 10, page: page_number)
+    @support_threads = @support_threads.pinned_first.sorted.includes(:user, :support_category)
+    @pagy, @records = pagy(@support_threads)
     render "help_center/support_threads/index"
   end
 
