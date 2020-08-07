@@ -64,6 +64,15 @@ Add the following line to your `config/routes.rb` file:
 mount HelpCenter::Engine => "/support"
 ```
 
+Add routes for active storage with your custom prefix
+
+```ruby
+get "/support/rails/active_storage/blobs/:signed_id/*filename" =>
+     "active_storage/blobs#show"
+get "/support/rails/active_storage/representations/:signed_blob_id/:variation_key/*filename" =>
+     "active_storage/representations#show"
+```
+
 Lastly, add the CSS to your `application.css` to load some default styles.
 
 ```scss
