@@ -1,24 +1,31 @@
-<% @layout = 'website' %>
+<% if  current_user && (current_user.admin? || current_user.moderator?) %>
+  <div class="fixed bottom-0 w-full z-50 bg-purple-600 text-purple-200 text-sm text-center font-brand-semibold px-4 py-3" role="alert">
+    You're logged in as <b>help center moderator user</b> (<%= current_user.email %>)</b>
+    <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "text-purple-100 hover:no-underline font-semibold underline mr-4 ml-6" %>
+    <%= link_to t('add_category'), help_center.new_support_category_path, class: "text-purple-100 hover:no-underline font-semibold underline" %>
+
+    <%= link_to "Logout", back_masquerade_path(current_user), class: "text-purple-100 hover:no-underline font-semibold underline ml-6" %>
+  </div>
+<% end %>
 
 <div class="container mx-auto mt-2">
 <div class="flex flex-wrap help_center">
  <div class="md:w-1/4 pr-4 pl-4 mb-3">
    <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light flex-auto p-6">
-     <% if current_user && (current_user.admin? || current_user.moderator?) %>
-      <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "btn-outline-primary btn-block" %>
-      <hr />
-     <% end %>
      <div class="support-thread-filters">
        <% SupportCategory.sorted.each do |category| %>
          <div class="pb-3">
-           <%= support_link_to help_center.support_category_support_threads_path(category) do %>
+           <%= support_link_to help_center.support_category_path(category) do %>
             <div class="mb-2 mt-3">
               <span class="font-extrabold">
              <%= category.name %>
              </span>
              </div>
            <% end %>
-           <div>
+           <div
+           class="ml-2 pl-1"
+           style="border-left: 2px solid <%= category.color %>"
+             >
             <% threads = SupportThread.where(support_category_id: category.id).order(:position) %>
             <% threads.each do |thread| %>
               <div class="mb-2">

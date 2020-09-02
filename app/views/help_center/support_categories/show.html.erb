@@ -1,0 +1,20 @@
+<div class="flex flex-wrap mb-8">
+  <% if is_moderator_or_owner?(@support_thread) %>
+    <div class="mb-4 bg-purple-600 flex w-full  px-4 py-2 text-sm pr-4 pl-4 justify-end">
+        <span class="mr-4 text-gray-200"><i class="far fa-sort-amount-down"></i> <%= @category.position %> </span>
+      <%= link_to icon("fas","pencil") + " Edit", help_center.edit_support_category_path(@category),
+        class: "text-gray-200",
+        data: { toggle: "tooltip", placement: "left" },
+        title: t('edit_this_thread') %>
+      <%= link_to icon("fas","trash") + " Delete", help_center.support_category_path(@category),
+        method: :delete,
+        class: "text-gray-200 ml-4",
+        data: { toggle: "tooltip", placement: "left", confirm: "Are you sure?" },
+        title: t('delete_category') %>
+    </div>
+  <% end %>
+  <div class="md:w-full pr-4 pl-41">
+    <h1 class="mb-4 font-bold"> <%= @category.name %></h1>
+  </div>
+
+</div>

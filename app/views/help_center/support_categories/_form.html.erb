@@ -1,0 +1,35 @@
+<%= form_for @category,
+   url: (@category.persisted? ? help_center.support_category_path(@category) : help_center.support_categories_path),
+   html: { data: {behavior: "comment-form"} } do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@category.errors.count, "error") %> prohibited this support_thread from being saved:</h2>
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-4">
+    <%= f.label t('title') %>
+    <%= f.text_field :name, placeholder: t('how_do_i'), class: "form-control form-input" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label t('position') %>
+    <%= f.text_field :position, class: "form-control form-input" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label t('color') %>
+    <%= f.color_field :color, class: "form-control form-input" %>
+  </div>
+  <div class="flex justify-between mb-4 text-right">
+    <% if f.object.new_record? %>
+      <%= f.button t('add'), class: "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> #{t('saving')}"} %>
+    <% else %>
+      <%= f.button t('update'), class: "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> #{t('saving')}"} %>
+    <% end %>
+
+    <%= link_to "Cancel", :back, class: "btn btn-link" %>
+  </div>
+<% end %>

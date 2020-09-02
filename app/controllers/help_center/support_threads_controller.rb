@@ -1,6 +1,6 @@
 class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
   before_action :authenticate_user!, only: [:mine, :participating, :new, :create]
-  before_action :set_support_thread, only: [:show, :edit, :update]
+  before_action :set_support_thread, only: [:show, :edit, :update, :destroy]
   before_action :require_mod_or_author_for_thread!, only: [:edit, :update]
 
   def index
@@ -63,6 +63,11 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
     else
       render action: :edit
     end
+  end
+
+  def destroy
+    @support_thread.destroy
+    redirect_to help_center.support_category_path(@support_thread.support_category), notice: I18n.t('successfully_deleted')
   end
 
   private

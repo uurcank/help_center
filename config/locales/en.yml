@@ -13,6 +13,7 @@ en:
   edit_this_post: Edit this post
   edit_this_thread: Edit this thread
   edit_thread: Edit thread
+  edit_category: Edit category
   filters: Filters
   how_do_i: How do I...?
   ignoring_thread: You're ignoring this thread.
@@ -40,10 +41,12 @@ en:
   title: title
   content: content
   position: position
+  color: color
   what_help_needed: What do you need help with?
   ask_your_question: Ask Your Question
   update_comment: Update comment
   your_changes_were_saved: Your changes were saved
+  successfully_deleted: Successfully deleted
   search_not_found: No results found for your search
   check_out: Check out
   latest_questions: the latest questions

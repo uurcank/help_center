@@ -1,0 +1,25 @@
+<%= cache support_thread do %>
+  <div class="support-thread">
+    <div class="flex flex-wrap">
+      <div class="flex-grow mb-2">
+            <%= link_to help_center.support_thread_path(support_thread) do %>
+        <h4>
+           <%= support_thread.title %>
+        </h4>
+        <p class="text-gray-500 hover:text-gray-700"><%= truncate(support_thread.content.to_plain_text, length: 200) %></p>
+        <div class="thread-details mt-2">
+            <%= t('content_updated_at', update_time: time_ago_in_words(support_thread.created_at)) %>
+        </div>
+        <% end %>
+      </div>
+     <% if HelpCenter.enable_comments %>
+      <div class="sm:w-1/6 pr-4 pl-4 text-center">
+        <%= link_to help_center.support_thread_path(support_thread), class: "thread-posts-count" do %>
+          <span class="count"><%= support_thread.support_posts_count %></span>
+          <small><%= t("post", count: support_thread.support_posts_count) %></small>
+        <% end %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<% end %>
