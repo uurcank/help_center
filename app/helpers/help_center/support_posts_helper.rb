@@ -5,7 +5,7 @@ module HelpCenter::SupportPostsHelper
   end
 
   def support_category_link(category)
-    link_to category.name, help_center.support_category_support_threads_path(category),
+    link_to category.name, help_center.support_category_path(category),
       style: "color: #{category.color}"
   end
 
