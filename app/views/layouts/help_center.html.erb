@@ -22,10 +22,7 @@
              </span>
              </div>
            <% end %>
-           <div
-           class="ml-2 pl-1"
-           style="border-left: 2px solid <%= category.color %>"
-             >
+           <div class="ml-2 pl-1">
             <% threads = SupportThread.where(support_category_id: category.id).order(:position) %>
             <% threads.each do |thread| %>
               <div class="mb-2">
@@ -127,4 +124,5 @@
  </div>
 </div>
 </div>
+
 <% parent_layout("application") %>
