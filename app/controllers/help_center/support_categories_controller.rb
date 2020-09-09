@@ -1,5 +1,8 @@
 class HelpCenter::SupportCategoriesController < HelpCenter::ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
   before_action :set_category, only: [:index, :show, :edit, :update, :destroy]
+  before_action :require_mod_or_author_for_thread!, only: [:edit, :update, :destroy]
+
 
   def index
     @support_threads = SupportThread.where(support_category: @category) if @category.present?

@@ -8,7 +8,7 @@ class HelpCenter::ApplicationController < ::ApplicationController
   end
 
   def is_moderator_or_owner?(object)
-    is_moderator? || object.user == current_user
+    is_moderator?
   end
   helper_method :is_moderator_or_owner?
 
@@ -32,6 +32,6 @@ class HelpCenter::ApplicationController < ::ApplicationController
   private
 
   def redirect_to_root
-    redirect_to help_center.root_path, alert: "You aren't allowed to do that."
+    redirect_to help_center.root_path
   end
 end
