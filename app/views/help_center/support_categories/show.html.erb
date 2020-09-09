@@ -1,5 +1,5 @@
 <div class="flex flex-wrap mb-8">
-  <% if is_moderator_or_owner?(@support_thread) %>
+  <% if is_moderator_or_owner?(@category) %>
     <div class="mb-4 bg-purple-600 flex w-full  px-4 py-2 text-sm pr-4 pl-4 justify-end">
         <span class="mr-4 text-gray-200"><i class="far fa-sort-amount-down"></i> <%= @category.position %> </span>
       <%= link_to icon("fas","pencil") + " Edit", help_center.edit_support_category_path(@category),
