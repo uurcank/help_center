@@ -10,20 +10,20 @@ Gem::Specification.new do |spec|
   spec.email         = ["support@pasilobus.com"]
 
   spec.summary       = %q{A wiki gem for creating documentation & help centers in your Rails app}
-  spec.description   = %q{A wiki gem for creating documentation & help centers in your Rails app}
+  spec.description   = %q{Knowledge Base, User Docs, API Docs, Community discussions and more for Rails apps}
   spec.homepage      = "https://github.com/uurcank/help_center"
   spec.license       = "MIT"
 
-  spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features)/})
-  end
-  spec.bindir        = "exe"
-  spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
-  spec.require_paths = ["lib"]
+  spec.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.md"]
 
   spec.add_dependency 'font-awesome-sass', '>= 5.13.0'
   spec.add_dependency 'friendly_id', '>= 5.2.0'
   spec.add_dependency 'gravatar_image_tag'
   spec.add_dependency 'rails', '>= 6.0.0'
-  spec.add_dependency 'will_paginate', '>= 3.1.0'
+
+  spec.add_development_dependency "pg"
+  spec.add_development_dependency "standard"
+  spec.add_development_dependency "webmock"
+  spec.add_development_dependency "mysql2"
+  spec.add_development_dependency "sqlite3"
 end
