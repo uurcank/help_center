@@ -11,7 +11,7 @@
 <% end %>
 
 <div class="container mx-auto mt-2">
-<div class="flex flex-wrap help_center">
+<div class="flex help_center">
  <div class="md:w-1/4 mb-4">
    <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light flex-auto p-6">
      <div class="support-thread-filters">
@@ -95,7 +95,7 @@
    </div>
  </div>
  <div class="md:w-3/4 pl-4 mb-3">
-   <div class="relative flex flex-col min-w-0 rounded break-words bg-white flex-auto p-6">
+   <div class="relative flex flex-col min-w-0 rounded break-words border bg-white flex-1 flex-auto p-6 md:mx-4">
      <%# Show first article by default on home pag %>
       <% if current_page?(help_center_path) %>
         <% if SupportCategory.all.count > 0 %>
