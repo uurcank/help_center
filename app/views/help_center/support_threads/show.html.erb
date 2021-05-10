@@ -1,23 +1,10 @@
 <div class="container mx-auto">
 <div class="flex flex-wrap mb-8">
-  <% if is_moderator_or_owner?(@support_thread) %>
-    <div class="mb-4 bg-purple-600 flex w-full px-4 py-2 text-sm justify-end items-center">
-      <span class="mr-4 text-gray-200"><i class="far fa-sort-amount-down"></i> <%= @support_thread.position %> </span>
-      <%= link_to icon("fas","pencil") + " Edit", help_center.edit_support_thread_path(@support_thread),
-        class: "text-gray-200",
-        data: { toggle: "tooltip", placement: "left" },
-        title: t('edit_this_thread') %>
+  <%= render partial: "shared/thread_actions" if is_moderator_or_owner?(@support_thread)%>
 
-        <%= link_to icon("fas","trash") + " Delete", help_center.support_thread_path(@support_thread),
-          method: :delete,
-          class: "text-gray-200 ml-4",
-          data: { toggle: "tooltip", placement: "left", confirm: "Are you sure?" },
-          title: t('delete_category') %>
-    </div>
-  <% end %>
   <div class="md:w-full pr-4 pl-41">
-    <small class="mb-2" style="color: <%= @support_thread.support_category.color %>"><%= link_to @support_thread.support_category.name, help_center.support_category_path(@support_thread.support_category) %> > <%= @support_thread.title %></small>
-    <h1 class="mb-4 font-bold"><%= icon "fas", "thumb-tack", class: "text-muted" if @support_thread.pinned? %> <%= @support_thread.title %></h1>
+    <small class="mb-2 tracking-normal font-normal" style="color: <%= @support_thread.support_category.color %>"><%= link_to @support_thread.support_category.name, help_center.support_category_path(@support_thread.support_category) %> > <%= @support_thread.title %></small>
+    <h1 class="mb-4 font-bold tracking-normal"><%= icon "fas", "thumb-tack", class: "text-muted" if @support_thread.pinned? %> <%= @support_thread.title %></h1>
   </div>
 
 </div>

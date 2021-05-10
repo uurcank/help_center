@@ -1,20 +1,19 @@
 <div class="flex flex-wrap mb-8">
-  <% if is_moderator_or_owner?(@category) %>
-    <div class="mb-4 bg-purple-600 flex w-full  px-4 py-2 text-sm pr-4 pl-4 justify-end">
-        <span class="mr-4 text-gray-200"><i class="far fa-sort-amount-down"></i> <%= @category.position %> </span>
-      <%= link_to icon("fas","pencil") + " Edit", help_center.edit_support_category_path(@category),
-        class: "text-gray-200",
-        data: { toggle: "tooltip", placement: "left" },
-        title: t('edit_this_thread') %>
-      <%= link_to icon("fas","trash") + " Delete", help_center.support_category_path(@category),
-        method: :delete,
-        class: "text-gray-200 ml-4",
-        data: { toggle: "tooltip", placement: "left", confirm: "Are you sure?" },
-        title: t('delete_category') %>
-    </div>
-  <% end %>
+  <%= render partial: "shared/category_actions" if is_moderator_or_owner?(@category)%>
   <div class="md:w-full pr-4 pl-41">
-    <h1 class="mb-4 font-bold"> <%= @category.name %></h1>
+    <h1 class="mb-4 font-bold tracking-normal"> <%= @category.name %></h1>
+    <% if @category.description %>
+     <%= @category.description %>
+    <% end %>
+     <div class="flex flex-col items-center">
+    <% @category.support_threads.sorted.each do |thread| %>
+  
+     <%= link_to help_center.support_thread_path(thread), class: "text-base font-semibold py-4 border-b w-full flex justify-between hover:bg-gray-200 px-4" do %>
+       <%= thread.title %> <i class="fas fa-arrow-right"></i>
+     <% end %>
+
+    <% end %>
+    </div>
   </div>
 
 </div>
