@@ -1,5 +1,9 @@
 ### Unreleased
 
+### 0.0.7
+
+* Improve default styling
+
 ### 0.0.6
 
 * Bug fixes
