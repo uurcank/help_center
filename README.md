@@ -1,14 +1,16 @@
 # HelpCenter
 
-HelpCenter is a Rails wiki gem with Trix editor support for organizing app documentation and tutorials. It includes support categories, support articles, simple moderation, the ability to leave comments to support articles and more.
+### 📖 Knowledge Base for your Ruby on Rails App 
 
-Out of the box, HelpCenter comes with styling for Boostrap v4 but you're free to customize the UI as much as you like by installing the views and tweaking the HTML.
+HelpCenter is a Rails wiki gem with Trix editor support for creating a knowledge base for your project. It includes support categories, support articles, simple moderation, the ability to leave comments to support articles and more.
+
+Out of the box, HelpCenter comes with styling for TailwindCSS 2.0 but you're free to customize the UI as much as you like by installing the views and tweaking the HTML.
 
 ## Requirements
 
 ```
 Rails >= 6.0.0
-tailwindcss >= 1.6.0
+tailwindcss >= 2.0.0
 ```
 
 ## Installation
@@ -61,7 +63,7 @@ if current_user.admin? || current_user.moderator?
 Add the following line to your `config/routes.rb` file:
 
 ```ruby
-mount HelpCenter::Engine => "/support"
+mount HelpCenter::Engine => "/docs"
 ```
 
 Add routes for active storage with your custom prefix
@@ -140,16 +142,18 @@ Your support is appreciated for this project. Consider backing the project via G
 We plan to release following features:
 
 - Contact form
-- Ticket submission
-- Live chat
-- Help Center Layout templates
 - Built-in search
+- Versioning Support
+- Themes
+- Dark Mode Support
 
 ## Acknowledgment
 
-HelpCenter generated from the awesome [simple_discussion](https://github.com/excid3/simple_discussion) gem by [Chris Oliver](https://github.com/excid3)
+[simple_discussion](https://github.com/excid3/simple_discussion) by [Chris Oliver](https://github.com/excid3)
 
-HelpCenter uses [Trix editor](https://github.com/basecamp/trix) by [Basecamp](https://github.com/basecamp)
+[Trix editor](https://github.com/basecamp/trix) by [Basecamp](https://github.com/basecamp)
+
+[TailwindCSS](https://github.com/basecamp/trix) by [Tailwind Labs](https://github.com/tailwindlabs/tailwindcss)
 
 ## Contributing
 
