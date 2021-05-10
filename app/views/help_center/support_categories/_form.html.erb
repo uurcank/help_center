@@ -17,11 +17,15 @@
   </div>
   <div class="mb-4">
     <%= f.label t('position') %>
-    <%= f.text_field :position, class: "form-control form-input" %>
+    <%= f.text_field :position, type: "number", step: "1", min: "0", class: "form-control form-input" %>
   </div>
   <div class="mb-4">
     <%= f.label t('color') %>
     <%= f.color_field :color, class: "form-control form-input" %>
+  </div>
+  <div class="mb-4">
+    <%= f.label t('title') %>
+    <%= f.rich_text_area :description, placeholder: t('how_do_i'), class: "form-control form-input" %>
   </div>
   <div class="flex justify-between mb-4 text-right">
     <% if f.object.new_record? %>
