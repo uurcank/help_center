@@ -39,6 +39,7 @@ en:
   saving: Saving
   this_solved_my_question: This solved my question
   title: title
+  description: description
   content: content
   position: position
   color: color
