@@ -1,16 +1,18 @@
-<% if  current_user && (current_user.admin? || current_user.moderator?) %>
-  <div class="fixed bottom-0 w-full z-50 bg-purple-600 text-purple-200 text-sm text-center font-brand-semibold px-4 py-3" role="alert">
-    You're logged in as <b>help center moderator user</b> (<%= current_user.email %>)</b>
-    <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "text-purple-100 hover:no-underline font-semibold underline mr-4 ml-6" %>
-    <%= link_to t('add_category'), help_center.new_support_category_path, class: "text-purple-100 hover:no-underline font-semibold underline" %>
-
-    <%= link_to "Logout", back_masquerade_path(current_user), class: "text-purple-100 hover:no-underline font-semibold underline ml-6" %>
+ 
+ 
+<% if current_user && (current_user.admin? || current_user.moderator?) %>
+  <div class="container top-0 flex justify-between w-full z-50 bg-blue-600 text-purple-200 text-sm text-center font-brand-semibold px-4 py-3 rounded" role="alert">
+     <span class="text-base font-normal">Welcome moderator (<%= current_user.email %>)</span>
+    <div>
+    <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "text-gray-100 hover:text-gray-300 hover:no-underline font-semibold underline mr-4 ml-6" %>
+    <%= link_to t('add_category'), help_center.new_support_category_path, class: "text-gray-100 hover:text-gray-300  hover:no-underline font-semibold underline" %>
+    </div>
   </div>
 <% end %>
 
 <div class="container mx-auto mt-2">
 <div class="flex flex-wrap help_center">
- <div class="md:w-1/4 pr-4 pl-4 mb-3">
+ <div class="md:w-1/4 mb-4">
    <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light flex-auto p-6">
      <div class="support-thread-filters">
        <% SupportCategory.sorted.each do |category| %>
@@ -92,12 +94,12 @@
    <% end %>
    </div>
  </div>
- <div class="md:w-3/4 pr-4 pl-4 mb-3">
+ <div class="md:w-3/4 pl-4 mb-3">
    <div class="relative flex flex-col min-w-0 rounded break-words bg-white flex-auto p-6">
      <%# Show first article by default on home pag %>
       <% if current_page?(help_center_path) %>
-        <% if SupportThread.all.count > 0 %>
-          <% @support_thread = SupportThread.all.first %>
+        <% if SupportCategory.all.count > 0 %>
+          <% @support_thread = SupportCategory.sorted.first.support_threads.sorted.first %>
           <div class="container mx-auto">
             <div class="flex flex-wrap mb-8">
               <% if is_moderator_or_owner?(@support_thread) %>
