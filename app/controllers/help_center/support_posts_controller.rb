@@ -52,10 +52,12 @@ class HelpCenter::SupportPostsController < HelpCenter::ApplicationController
     redirect_to help_center.support_thread_path(@support_thread, anchor: ActionView::RecordIdentifier.dom_id(@support_post))
   end
 
-  private
-
+  private 
+ 
     def set_support_thread
       @support_thread = SupportThread.friendly.find(params[:support_thread_id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to help_center.root_path
     end
 
     def set_support_post

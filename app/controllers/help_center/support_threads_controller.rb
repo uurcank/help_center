@@ -74,6 +74,8 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
 
     def set_support_thread
       @support_thread = SupportThread.friendly.find(params[:id])
+    rescue ActiveRecord::RecordNotFound
+      redirect_to help_center.root_path
     end
 
     def support_thread_params

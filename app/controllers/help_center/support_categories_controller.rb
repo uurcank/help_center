@@ -49,7 +49,7 @@ class HelpCenter::SupportCategoriesController < HelpCenter::ApplicationControlle
     def set_category
       @category = SupportCategory.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to help_center.support_threads_path
+      redirect_to help_center.root_path
     end
 
     def support_category_params
