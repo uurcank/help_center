@@ -57,7 +57,7 @@ class HelpCenter::SupportPostsController < HelpCenter::ApplicationController
     def set_support_thread
       @support_thread = SupportThread.friendly.find(params[:support_thread_id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to help_center.root_path
+      redirect_to help_center.root_path, notice: I18n.t('page_not_found')
     end
 
     def set_support_post

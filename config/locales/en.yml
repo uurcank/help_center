@@ -54,3 +54,5 @@ en:
   instead: instead?
   written_by_author: "Written by %{author}"
   content_updated_at: "Updated %{update_time} ago"
+  browse_categories: "Browse Categories"
+  page_not_found: "Page not found"

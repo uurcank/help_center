@@ -4,8 +4,7 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
   before_action :require_mod_or_author_for_thread!, only: [:edit, :update]
 
   def index
-    @support_threads = SupportThread.pinned_first.sorted.includes(:user, :support_category)
-    @pagy, @records = pagy(@support_threads)
+    redirect_to help_center.support_categories_path
   end
 
   def answered
@@ -75,7 +74,7 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
     def set_support_thread
       @support_thread = SupportThread.friendly.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to help_center.root_path
+      redirect_to help_center.support_categories_path, notice: I18n.t('page_not_found')
     end
 
     def support_thread_params
