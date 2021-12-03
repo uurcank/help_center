@@ -1,21 +1,16 @@
 <% if SupportCategory.none? %>
     <div><%= t('search_not_found') %>. <%= link_to t('browse_categories'), help_center.support_categories_path %> <%= t('instead') %> </div>
 <% else %>
-<div class="flex flex-wrap mb-8">
- 
-  <div class="md:w-full pr-4 pl-41">
-    <h1 class="mb-4 font-bold tracking-normal"> Categories</h1>
- 
-     <div class="flex flex-col items-center">
-    <% SupportCategory.all.sorted.each do |category| %>
-  
-     <%= link_to  help_center.support_category_path(category), class: "text-base font-semibold py-4 border-b w-full flex justify-between hover:bg-gray-200 px-4" do %>
-       <%= category.name %> <i class="fas fa-arrow-right"></i>
-     <% end %>
-
-    <% end %>
+<div class="px-4 py-10 mb-6 text-white bg-green-500	text-4xl text-4xl md:px-20 lg:px-40 xl:px-56 font-bold">
+    <h1>Support Categories</h1>
+</div>
+<div class="px-4 pt-4 md:px-20 lg:px-40 xl:px-56">
+  <% SupportCategory.sorted.each do |category| %>
+    <div class="max-w-4xl text-gray-700">
+        <div class="mb-10">
+            <p class="leading-normal mb-4"><%= category.name %></p>
+        </div>
     </div>
-  </div>
-
+  <% end %>
 </div>
 <% end %>

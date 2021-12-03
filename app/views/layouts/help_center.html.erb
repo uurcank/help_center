@@ -1,103 +1,45 @@
- 
- 
-<% if current_user && (current_user.admin? || current_user.moderator?) %>
-  <div class="container top-0 flex justify-between w-full z-50 bg-blue-600 text-purple-200 text-sm text-center font-brand-semibold px-4 py-3 rounded" role="alert">
-     <span class="text-base font-normal text-white">Welcome moderator (<%= current_user.email %>)</span>
+ <!DOCTYPE html>
+ <html class="h-full antialiased">
+ <head>
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+ </head>
+
+
+
+
+<body class="flex h-full overflow-x-hidden font-sans font-normal leading-normal bg-offwhite">
+  <div class="flex flex-wrap flex-grow items-start justify-between main">
+  <% if current_user && (current_user.admin? || current_user.moderator?) %>
+  <div class="top-0 flex justify-between w-full z-50 bg-blue-600 text-purple-200 text-sm text-center font-brand-semibold px-4 py-3 rounded" role="alert">
+     <span class="text-base font-normal text-white">Welcome moderators (<%= current_user.email %>)</span>
     <div>
     <%= link_to t('add_an_article'), help_center.new_support_thread_path, class: "text-gray-100 hover:text-gray-300 hover:no-underline font-semibold underline mr-4 ml-6" %>
     <%= link_to t('add_category'), help_center.new_support_category_path, class: "text-gray-100 hover:text-gray-300  hover:no-underline font-semibold underline" %>
     </div>
   </div>
 <% end %>
+    <div class="flex w-full px-4 pt-4 md:w-1/5 lg:px-8">
+      <div class="text-lg">
+        <a class="block" href="/hq"><img src="https://www.pasilobus.com/assets/logo-713c713b2ca720ef466ab2b9b505d925d7678a8c9accf099b9d2f7f35097425f.svg"></a>
 
-<div class="container mx-auto mt-2">
-<div class="flex help_center">
- <div class="md:w-1/4 mb-4">
-   <div class="relative flex flex-col min-w-0 rounded break-words border bg-white border-1 border-grey-light flex-auto p-6">
-     <div class="support-thread-filters">
-       <% SupportCategory.sorted.each do |category| %>
-         <div class="pb-3">
-           <%= support_link_to help_center.support_category_path(category) do %>
-            <div class="mb-2 mt-3">
-              <span class="font-extrabold">
-             <%= category.name %>
-             </span>
-             </div>
-           <% end %>
-           <div class="ml-2 pl-1">
+        <% SupportCategory.sorted.each do |category| %>
+          <h4 class="mt-4 font-semibold mb-1 text-gray-800"><%= category.name %></h4>
+          <ul class="list-none leading-loose">
             <% threads = SupportThread.where(support_category_id: category.id).order(:position) %>
             <% threads.each do |thread| %>
-              <div class="mb-2">
-              <%= support_link_to help_center.support_thread_path(thread) do %>
-                <%= thread.title %>
-              <% end %>
-              </div>
+              <li>
+                <%= support_link_to help_center.support_thread_path(thread) do %>
+                  <%= thread.title %>
+                <% end %>
+              </li>
             <% end %>
-            </div>
-         </div>
-       <% end %>
-     </div>
-   <% if HelpCenter.enable_comments %>
-           <hr />
-     <div class="support-thread-filters">
-       <h5>
-         <strong>
-           <%= t('filters') %>
-         </strong>
-       </h5>
-       <div>
-         <%= support_link_to help_center.support_threads_path, exact: true do %>
-           <%= icon "fa-fw fas", "bars" %>
-           <%= t('.all_threads') %>
-         <% end %>
-       </div>
-       <% if user_signed_in? %>
-         <div>
-           <%= support_link_to help_center.mine_support_threads_path do %><%= icon "fa-fw far", "user-circle" %>
-             <%= t('.my_questions') %>
-           <% end %>
-         </div>
-         <div>
-           <%= support_link_to help_center.participating_support_threads_path do %>
-             <%= icon "fa-fw far", "comments" %>
-             <%= t('.participating') %>
-           <% end %>
-         </div>
-       <% end %>
-       <div>
-         <%= support_link_to help_center.answered_support_threads_path do %>
-           <%= icon "fa-fw fas", "check" %>
-           <%= t('.answered') %>
-         <% end %>
-       </div>
-       <div>
-         <%= support_link_to help_center.unanswered_support_threads_path do %>
-           <%= icon "fa-fw fas", "question" %>
-           <%= t('.unanswered') %>
-         <% end %>
-       </div>
-     </div>
-     <% if @support_thread.present? && @support_thread.persisted? %>
-       <hr />
-       <%# User has not posted in the thread or subscribed %>
-       <h5><%= t('.notifications') %></h5>
-       <%= link_to help_center.support_thread_notifications_path(@support_thread), method: :post, class: "btn-secondary btn-sm btn-block mb-2" do %>
-         <% if @support_thread.subscribed? current_user %>
-           <%= icon "fa-fw fas", "bell-slash" %> <%= t('.unsubscribe') %>
-         <% else %>
-           <%= icon "fa-fw fas", "bell" %>
-           <%= t('.suscribe') %>
-         <% end %>
-       <% end %>
-       <small><%= @support_thread.subscribed_reason(current_user) %></small>
-     <% end %>
-   <% end %>
-   </div>
- </div>
- <div class="md:w-3/4 pl-4 mb-3">
-   <div class="relative flex flex-col min-w-0 rounded break-words border bg-white flex-1 flex-auto p-6 md:mx-4">
-     <%# Show first article by default on home pag %>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+    <div class="flex flex-col w-full h-full bg-white border-l border-gray-400 md:w-4/5 docs-main">
       <% if current_page?(help_center_path) %>
+      <!--hello-->
         <% if SupportCategory.all.count > 0 %>
           <% @support_thread = SupportCategory.sorted.first.support_threads.sorted.first %>
           <div class="container mx-auto">
@@ -119,12 +61,12 @@
             <%= @support_thread.content %>
           </div>
         <% end %>
+      <% else %>
+        <%= yield %>
       <% end %>
+      
+    </div>
+  </div>
+</body>
+<html>
 
-     <%= yield %>
-   </div>
- </div>
-</div>
-</div>
-
-<% parent_layout("application") %>

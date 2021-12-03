@@ -1,29 +1,13 @@
-<div class="container mx-auto">
-<div class="flex flex-wrap mb-8">
-  <%= render partial: "shared/thread_actions" if is_moderator_or_owner?(@support_thread)%>
 
-  <div class="md:w-full pr-4 pl-41">
-    <small class="mb-2 tracking-normal font-normal" style="color: <%= @support_thread.support_category.color %>"><%= link_to @support_thread.support_category.name, help_center.support_category_path(@support_thread.support_category) %> > <%= @support_thread.title %></small>
-    <h1 class="mb-4 font-bold tracking-normal"><%= icon "fas", "thumb-tack", class: "text-muted" if @support_thread.pinned? %> <%= @support_thread.title %></h1>
-  </div>
 
+
+<div class="px-4 py-10 mb-6 text-white bg-green-500	text-4xl text-4xl md:px-20 lg:px-40 xl:px-56 font-bold">
+    <h1><%= @support_thread.title %></h1>
 </div>
-
-<%= @support_thread.content %>
-
-<p class="mt-6 italic text-gray-400">Last Updated: <%= @support_thread.updated_at.strftime("%B %e, %Y") %> <p>
-<!--
-<div class="thread-reaction">
-  <p>Did this answer your question?</p>
-  <p class="thread-reaction-links">
-    <a>😞<a>
-    <a>😃<a>
-  </p>
-<div>
--->
-<% if HelpCenter.enable_comments %>
- <hr>
- <%= render partial: "help_center/support_posts/support_post", collection: @support_thread.support_posts.includes(:user).sorted %>
- <%= render partial: "help_center/support_posts/form" if user_signed_in? %>
-<% end %>
+<div class="px-4 pt-4 md:px-20 lg:px-40 xl:px-56">
+    <div class="max-w-4xl text-gray-700">
+        <div class="mb-10">
+            <p class="leading-normal mb-4"><%= @support_thread.content %></p>
+        </div>
+    </div>
 </div>
