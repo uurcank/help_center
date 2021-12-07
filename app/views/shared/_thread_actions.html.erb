@@ -1,15 +1,15 @@
- <div class="mb-4  bg-blue-50 flex justify-between w-full px-4 py-2 text-base items-center">
-      <span class="mr-4 text-gray-500"><i class="far fa-sort-amount-down"></i> <%= @support_thread.position %> </span>
+ <div class="bg-blue-400 flex justify-between w-full px-4 py-2 text-base items-center">
+      <span class="mr-4 text-gray-100"><i class="fas fa-sort"></i> <%= @support_thread.position %> </span>
       
       <div>
-      <%= link_to icon("fas","pencil") + " Edit Article", help_center.edit_support_thread_path(@support_thread),
-        class: "text-gray-500",
+      <%= link_to "Edit Article", help_center.edit_support_thread_path(@support_thread),
+        class: "text-gray-100 underline text-sm",
         data: { toggle: "tooltip", placement: "left" },
         title: t('edit_this_thread') %>
 
-        <%= link_to icon("fas","trash") + " Delete", help_center.support_thread_path(@support_thread),
+        <%= link_to "Delete", help_center.support_thread_path(@support_thread),
           method: :delete,
-          class: "text-gray-500 ml-4",
+          class: "text-gray-100 ml-4 underline text-sm",
           data: { toggle: "tooltip", placement: "left", confirm: "Are you sure?" },
           title: t('delete_category') %>
         </div>

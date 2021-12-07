@@ -12,28 +12,28 @@
     </div>
   <% end %>
   <div class="mb-4">
-    <%= f.label t('title') %>
-    <%= f.text_field :name, placeholder: t('how_do_i'), class: "form-control form-input" %>
+    <%= f.label t('title'), class: "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 mb-2" %>
+    <%= f.text_field :name, placeholder: t('how_do_i'), class: "shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md p-2" %>
   </div>
   <div class="mb-4">
-    <%= f.label t('position') %>
-    <%= f.text_field :position, type: "number", step: "1", min: "0", class: "form-control form-input" %>
+    <%= f.label t('position'), class: "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 mb-4" %>
+    <%= f.text_field :position, type: "number", step: "1", min: "0", class: "shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md p-2" %>
   </div>
   <div class="mb-4">
-    <%= f.label t('color') %>
-    <%= f.color_field :color, class: "form-control form-input" %>
+    <%= f.label t('color'), class: "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 mb-4" %>
+    <%= f.color_field :color, class: "max-w-xs shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md" %>
   </div>
   <div class="mb-4">
-    <%= f.label t('title') %>
-    <%= f.rich_text_area :description, placeholder: t('how_do_i'), class: "form-control form-input" %>
+    <%= f.label t('title'), class: "block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 mb-4" %>
+    <%= f.rich_text_area :description, placeholder: t('how_do_i'), class: "shadow-sm block w-full focus:ring-blue-500 focus:border-blue-500 sm:text-sm border border-gray-300 rounded-md p-2" %>
   </div>
   <div class="flex justify-between mb-4 text-right">
     <% if f.object.new_record? %>
-      <%= f.button t('add'), class: "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> #{t('saving')}"} %>
+      <%= f.button t('add'), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> #{t('saving')}"} %>
     <% else %>
-      <%= f.button t('update'), class: "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> #{t('saving')}"} %>
+      <%= f.button t('update'), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> #{t('saving')}"} %>
     <% end %>
 
-    <%= link_to "Cancel", :back, class: "btn btn-link" %>
+    <%= link_to "Cancel", :back, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" %>
   </div>
 <% end %>
