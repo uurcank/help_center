@@ -1,5 +1,18 @@
 ### Unreleased
 
+* Fixes in form labels
+* Styling improvements
+
+### 0.0.9
+
+* [BREAKING] No longer inherits application layout
+* [BREAKING] Use CDN to install required libraries, skipping asset pipeline
+* [BREAKING] Layout file requires a logo.svg file in assets, otherwise will break
+* Upgrade to Tailwind v2.0
+* New layout design
+* Togglable sidebar menu
+* Use Highlight.js for syntax highlighting
+
 ### 0.0.7
 
 * Improve default styling
