@@ -73,6 +73,7 @@ class HelpCenter::SupportThreadsController < HelpCenter::ApplicationController
 
     def set_support_thread
       @support_thread = SupportThread.friendly.find(params[:id])
+      @category = @support_thread.support_category
     rescue ActiveRecord::RecordNotFound
       redirect_to help_center.support_categories_path, notice: I18n.t('page_not_found')
     end
