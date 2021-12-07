@@ -10,7 +10,7 @@ Out of the box, HelpCenter comes with styling for TailwindCSS 2.0 but you're fre
 
 ```
 Rails >= 6.0.0
-tailwindcss >= 2.0.0
+
 ```
 
 ## Installation
