@@ -8,3 +8,6 @@
 /spec/reports/
 /tmp/
 .DS_Store
+
+# Ignore all files with the .gem extension
+*.gem
