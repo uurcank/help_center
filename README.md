@@ -2,14 +2,14 @@
 
 ### 📖 Knowledge Base for your Ruby on Rails App 
 
-HelpCenter is a Rails wiki gem with Trix editor support for creating a knowledge base for your project. It includes support categories, support articles, simple moderation, the ability to leave comments to support articles and more.
+HelpCenter is a Rails wiki gem with Trix editor support for creating a knowledge base for your project. It includes categories, articles, simple moderation, the ability to leave comments to docs and more.
 
 Out of the box, HelpCenter comes with styling for TailwindCSS 2.0 but you're free to customize the UI as much as you like by installing the views and tweaking the HTML.
 
 ## Requirements
 
 ```
-Rails >= 6.0.0
+Rails >= 6.1.4
 
 ```
 
@@ -48,13 +48,13 @@ class User < ActiveRecord::Base
 end
 ```
 
-Next add a `moderator` or `admin` flag to the `User` model.
+Next add a `moderator` and `admin` flag to the `User` model.
 
 ```bash
-rails g migration AddModeratorToUsers moderator:boolean
+rails g migration AddModeratorToUsers admin:boolean moderator:boolean
 rails db:migrate
 ```
-Only moderators or admins can add support articles.
+Only moderators or admins can manage articles.
 
 ```
 if current_user.admin? || current_user.moderator?
@@ -69,16 +69,10 @@ mount HelpCenter::Engine => "/docs"
 Add routes for active storage with your custom prefix
 
 ```ruby
-get "/support/rails/active_storage/blobs/:signed_id/*filename" =>
+get "/docs/rails/active_storage/blobs/:signed_id/*filename" =>
      "active_storage/blobs#show"
-get "/support/rails/active_storage/representations/:signed_blob_id/:variation_key/*filename" =>
+get "/docs/rails/active_storage/representations/:signed_blob_id/:variation_key/*filename" =>
      "active_storage/representations#show"
-```
-
-Lastly, add the CSS to your `application.css` to load some default styles.
-
-```scss
-*= require help_center
 ```
 
 ## Usage

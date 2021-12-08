@@ -3,6 +3,12 @@
 * Fixes in form labels
 * Styling improvements
 
+### 0.1.0
+
+* Inherit application layout
+* Remove logo requirement removed (add the layout file to your views to customize)
+* Refactor partials
+
 ### 0.0.9
 
 * [BREAKING] No longer inherits application layout
