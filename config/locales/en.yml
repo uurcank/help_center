@@ -4,9 +4,12 @@ en:
   update: Update
   add_a_comment: Add A Comment
   add_an_article: Add Article
+  add_article: Add Article
   ask_a_question: Ask A Question
   asked_time_ago: "Asked %{time} ago by %{author}"
   choose_a_category: Choose a Category
+  add_category: "Add a Category"
+  delete_category: "Delete Category"
   comment: Comment
   commented_on: Commented on
   documentation: Documentation
