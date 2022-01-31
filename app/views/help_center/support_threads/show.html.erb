@@ -1,14 +1,4 @@
 
 <%= render partial: "shared/thread_actions" if is_moderator_or_owner?(@support_thread)%>
 
-<div class="px-4 py-10 mb-6 text-white bg-gray-100	text-4xl text-4xl md:px-20 lg:px-40 xl:px-56 font-bold">
-    <p class="text-sm font-normal text-gray-400 mb-4"><%= link_to @support_thread.support_category.name, help_center.support_category_path(@support_thread.support_category) %> / <%= @support_thread.title %></p>
-    <h1 class="text-gray-900"><%= @support_thread.title %></h1>
-</div>
-<div class="px-4 pt-4 md:px-20 lg:px-40 xl:px-56">
-    <div class="max-w-5xl text-gray-700">
-        <div class="mb-10">
-            <p class="leading-normal mb-4"><%= @support_thread.content %></p>
-        </div>
-    </div>
-</div>
+<%= render "support_thread", support_thread: @support_thread %>
