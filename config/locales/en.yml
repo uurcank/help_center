@@ -4,15 +4,19 @@ en:
   update: Update
   add_a_comment: Add A Comment
   add_an_article: Add Article
+  add_article: Add Article
   ask_a_question: Ask A Question
   asked_time_ago: "Asked %{time} ago by %{author}"
   choose_a_category: Choose a Category
+  add_category: "Add a Category"
+  delete_category: "Delete Category"
   comment: Comment
   commented_on: Commented on
   documentation: Documentation
   edit_this_post: Edit this post
   edit_this_thread: Edit this thread
   edit_thread: Edit thread
+  edit_article: Edit Article
   edit_category: Edit category
   filters: Filters
   how_do_i: How do I...?
